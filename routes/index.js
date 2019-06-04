@@ -6,7 +6,7 @@ const server = '127.0.0.1:27017'
 const database = 'smsdb'
 
 
-mongoose.connect(`mongodb://${server}/${database}`, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || `mongodb://${server}/${database}`, {useNewUrlParser: true});
 const db = mongoose.connection;
 
 let smsSchema = new mongoose.Schema({
@@ -22,10 +22,10 @@ let smsrec = mongoose.model('smsrec',smsSchema)
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'smsend' });
+  res.render('index', { title: 'HiveCube' });
 });
 
-router.post('/', (req, res, next)=> {
+router.post('/sms', (req, res, next)=> {
   //create sms object 
   const sms = {
     shortCode: req.body.shortCode,
