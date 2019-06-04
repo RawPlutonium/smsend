@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'HiveCube' });
 });
 
-router.post('/sms', (req, res, next)=> {
+router.post('/hopesms', (req, res, next)=> {
   //create sms object 
   const sms = {
     shortCode: req.body.shortCode,
